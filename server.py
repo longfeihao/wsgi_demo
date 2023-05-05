@@ -6,7 +6,8 @@ from logger_util import get_logger
 from sqlite_execute import Database
 from utils import CommonException, debyteify
 
-
+# 全局变量
+database = Database()
 # 执行函数
 def execute(request):
     return database.execute(request)
@@ -104,5 +105,4 @@ def run():
 
 if __name__ == '__main__':
     logger = get_logger(level='info', name='server')
-    database = Database()
     run()
