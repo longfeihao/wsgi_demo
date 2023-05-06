@@ -4,7 +4,7 @@ from wsgiref.simple_server import make_server
 
 from logger_util import get_logger
 from sqlite_execute import Database
-from utils import CommonException, debyteify
+from utils import CommonException
 
 # 全局变量
 database = Database()
@@ -67,7 +67,7 @@ def application(environ, start_response):
 
     # 获取请求入参
     if request_method == 'GET':
-        request = urllib.parse.parse_qs(request_body.decode('ascii'))
+        request = urllib.parse.parse_qs(query_string.decode('ascii'))
     else:
         try:
             request_body_size = int(environ.get('CONTENT_LENGTH', 0))
@@ -77,7 +77,7 @@ def application(environ, start_response):
         logger.debug(f'request_body: {request_body}')
         request = urllib.parse.parse_qs(request_body.decode('ascii'))
         
-    request = debyteify(request)
+    # request = debyteify(request)
     for key, value in request.items():
         if isinstance(value, list) and len(value) == 1:
             request[key] = value[0]

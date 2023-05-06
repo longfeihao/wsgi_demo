@@ -1,7 +1,4 @@
-import json
 import time
-import urllib.parse
-import urllib.request
 
 from logger_util import get_logger
 from sqlite_execute import ExecuteSqlMethod, ExecuteSqlResultMethod, Query
