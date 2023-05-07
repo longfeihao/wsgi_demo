@@ -6,8 +6,8 @@ from logger_util import get_logger
 from sqlite_execute import Database
 from utils import CommonException
 
-# 全局变量
-database = Database()
+database = None
+
 # 执行函数
 def execute(request):
     return database.execute(request)
@@ -93,6 +93,8 @@ def application(environ, start_response):
     return [response_string.encode('utf-8')]
 
 def run():
+    global database
+    database = Database()
     try:
         ip = '127.0.0.1'
         port = 50001
